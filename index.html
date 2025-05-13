@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Liste des donateurs</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+   <link rel="stylesheet" href="./src/output.css">
+
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-blue-800 text-white py-6 px-8">
+    <h1 class="text-3xl font-bold text-center">Liste des donateurs</h1>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex flex-col md:flex-row p-6 gap-6">
+
+    <!-- Sidebar -->
+    <aside class="md:w-1/4 bg-white rounded-lg shadow p-4">
+      <nav>
+        <h3 class="text-lg font-semibold mb-2">Filtre :</h3>
+        <ul class="flex flex-col gap-2 mb-4">
+          <li><button id="tous" class="bg-blue-100 hover:bg-blue-200 text-blue-800 font-medium py-2 px-4 rounded">Tous les donateurs</button></li>
+          <li><button id="homme" class="bg-blue-100 hover:bg-blue-200 text-blue-800 font-medium py-2 px-4 rounded">Les donateurs</button></li>
+          <li><button id="femme" class="bg-blue-100 hover:bg-pink-200 text-pink-800 font-medium py-2 px-4 rounded">Les donatrices</button></li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mb-2">Trier par :</h3>
+        <ul class="flex flex-col gap-2 mb-4">
+          <li><button id="montant-don" class="bg-green-100 hover:bg-green-200 text-green-800 font-medium py-2 px-4 rounded">Montant donné</button></li>
+          <li><button id="ordre-abc" class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded">Ordre alphabétique</button></li>
+        </ul>
+
+        <h3 class="text-lg font-semibold mb-2">Nombre de cartes :</h3>
+        <select id="nb-cartes" class="w-full p-2 border rounded">
+          <option value="10">10 cartes</option>
+          <option value="20">20 cartes</option>
+          <option value="50" selected>50 cartes</option>
+        </select>
+      </nav>
+    </aside>
+
+    <!-- Liste des utilisateurs -->
+    <section id="liste-utilisateurs" class="md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Les cartes seront injectées ici -->
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-800 text-white text-center py-4 mt-6">
+    <p>©2025 Nassima Mehdi – Tous droits réservés</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
