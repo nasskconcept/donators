@@ -13,6 +13,9 @@
   <!-- Header -->
   <header class="bg-blue-800 text-white py-6 px-8">
     <h1 class="text-3xl font-bold text-center">Liste des donateurs</h1>
+    <nav class="text-center mt-2" aria-label="Lien vers la page statistiques">
+      <a href="stat.html" class="underline text-white hover:text-gray-200">→ Voir les statistiques</a>
+    </nav>
   </header>
 
   <!-- Main Content -->
@@ -20,6 +23,9 @@
 
     <!-- Sidebar -->
     <aside class="md:w-1/4 bg-white rounded-lg shadow p-4">
+      <h3 class="text-lg font-semibold mb-2">Rechercher :</h3>
+<input type="text" id="search-nom" placeholder="Nom du donateur..." class="w-full p-2 border rounded mb-4">
+
       <nav>
         <h3 class="text-lg font-semibold mb-2">Filtre :</h3>
         <ul class="flex flex-col gap-2 mb-4">

@@ -73,3 +73,14 @@ document.getElementById("ordre-abc").addEventListener("click", () => {
   );
   afficherCartes(triAlpha.slice(0, parseInt(selectNbCartes.value)));
 });
+const searchInput = document.getElementById("search-nom");
+
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.toLowerCase();
+
+  listeActive = users.filter((user) =>
+    user.name.toLowerCase().includes(searchTerm)
+  );
+
+  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+});

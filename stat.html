@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Statistiques des dons</title>
+  <link rel="stylesheet" href="./src/output.css" />
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+
+  <header class="bg-blue-800 text-white py-6 px-8 text-center">
+    <h1 class="text-3xl font-bold">Statistiques des donateurs</h1>
+    <nav aria-label="Navigation principale">
+      <a href="index.html" class="underline text-white hover:text-gray-200">← Retour à la liste des donateurs</a>
+    </nav>
+  </header>
+
+  <main class="max-w-3xl mx-auto mt-8 bg-white rounded-lg shadow p-6">
+    <section aria-labelledby="titre-stats">
+      <h2 id="titre-stats" class="text-2xl font-bold text-blue-800 mb-4">Résumé des dons</h2>
+      <ul class="space-y-3 text-lg">
+        <li><strong>Nombre total de dons :</strong> <span id="stat-nb-dons">...</span></li>
+        <li><strong>Montant total donné :</strong> <span id="stat-total">...</span></li>
+        <li><strong>Montant moyen :</strong> <span id="stat-moyen">...</span></li>
+        <li><strong>Plus gros don :</strong> <span id="stat-max">...</span></li>
+        <li><strong>Donateur le plus généreux :</strong> <span id="stat-meilleur">...</span></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="bg-blue-800 text-white text-center py-4 mt-6">
+    <p>&copy; 2025 Nassima Mehdi – Tous droits réservés</p>
+  </footer>
+
+  <script src="stat.js"></script>
+</body>
+</html>
