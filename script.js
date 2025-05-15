@@ -1,10 +1,10 @@
 const sectionCartes = document.getElementById("liste-utilisateurs");
 const selectNbCartes = document.getElementById("nb-cartes");
+const searchInput = document.getElementById("search-nom");
 
 let users = [];
-let listeActive = []; // 👈 Stocke la liste filtrée/affichée actuellement
+let listeActive = [];
 
-// Récupération des données
 fetch("https://randomuser.me/api/?results=50")
   .then((res) => res.json())
   .then((data) => {
@@ -15,14 +15,17 @@ fetch("https://randomuser.me/api/?results=50")
       phone: user.phone,
       gender: user.gender,
       photo: user.picture.medium,
-      amount: Math.floor(Math.random() * 276) + 25, // 25 à 300 €
+      amount: Math.floor(Math.random() * 276) + 25,
     }));
 
-    listeActive = users; // 👈 on initialise listeActive
-    afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+    listeActive = users;
+
+    localStorage.setItem("donateursFiltres", JSON.stringify(users));
+    localStorage.setItem("nbCartes", selectNbCartes.value);
+
+    mettreAJourAffichageEtStockage();
   });
 
-// Fonction d'affichage
 function afficherCartes(liste) {
   sectionCartes.innerHTML = "";
   liste.forEach((user) => {
@@ -40,47 +43,47 @@ function afficherCartes(liste) {
   });
 }
 
-// Sélecteur du nombre de cartes
+function mettreAJourAffichageEtStockage() {
+  const nb = parseInt(selectNbCartes.value);
+  const listeVisible = listeActive.slice(0, nb);
+  afficherCartes(listeVisible);
+  localStorage.setItem("donateursFiltres", JSON.stringify(listeActive));
+  localStorage.setItem("nbCartes", nb);
+}
+
 selectNbCartes.addEventListener("change", () => {
-  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+  mettreAJourAffichageEtStockage();
 });
 
-// Filtres
 document.getElementById("tous").addEventListener("click", () => {
   listeActive = users;
-  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+  mettreAJourAffichageEtStockage();
 });
 
 document.getElementById("homme").addEventListener("click", () => {
   listeActive = users.filter((u) => u.gender === "male");
-  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+  mettreAJourAffichageEtStockage();
 });
 
 document.getElementById("femme").addEventListener("click", () => {
   listeActive = users.filter((u) => u.gender === "female");
-  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+  mettreAJourAffichageEtStockage();
 });
 
-// Tri
 document.getElementById("montant-don").addEventListener("click", () => {
-  const triMontant = [...listeActive].sort((a, b) => b.amount - a.amount);
-  afficherCartes(triMontant.slice(0, parseInt(selectNbCartes.value)));
+  listeActive = [...listeActive].sort((a, b) => b.amount - a.amount);
+  mettreAJourAffichageEtStockage();
 });
 
 document.getElementById("ordre-abc").addEventListener("click", () => {
-  const triAlpha = [...listeActive].sort((a, b) =>
-    a.name.localeCompare(b.name)
-  );
-  afficherCartes(triAlpha.slice(0, parseInt(selectNbCartes.value)));
+  listeActive = [...listeActive].sort((a, b) => a.name.localeCompare(b.name));
+  mettreAJourAffichageEtStockage();
 });
-const searchInput = document.getElementById("search-nom");
 
 searchInput.addEventListener("input", () => {
   const searchTerm = searchInput.value.toLowerCase();
-
   listeActive = users.filter((user) =>
     user.name.toLowerCase().includes(searchTerm)
   );
-
-  afficherCartes(listeActive.slice(0, parseInt(selectNbCartes.value)));
+  mettreAJourAffichageEtStockage();
 });
